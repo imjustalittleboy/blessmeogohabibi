@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habibi, Bless Libra — The Case</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,850&family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:      #071a12;
+    --pool:      #0d2b1c;
+    --emerald:   #1f6e46;
+    --gold:      #f0c04e;
+    --gold-dim:  #caa23f;
+    --cream:     #f4efe1;
+    --cream-dim: rgba(244,239,225,0.62);
+    --glass:     rgba(244,239,225,0.06);
+    --glass-brd: rgba(244,239,225,0.14);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 120% 80% at 50% -10%, #123c26 0%, transparent 55%),
+      linear-gradient(180deg, var(--deep) 0%, var(--pool) 55%, #051209 100%);
+    color:var(--cream);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* ---------- underwater caustic light shimmer ---------- */
+  .caustics{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      repeating-linear-gradient(115deg, rgba(240,192,78,0.035) 0px, transparent 2px, transparent 60px, rgba(240,192,78,0.035) 62px);
+    animation: shimmer 9s linear infinite;
+    opacity:0.6;
+  }
+  @keyframes shimmer{
+    0%{ transform:translate3d(0,0,0); }
+    100%{ transform:translate3d(-140px,60px,0); }
+  }
+
+  /* ---------- swimming money layer ---------- */
+  .money-pool{
+    position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none;
+  }
+  .bill{
+    position:absolute;
+    opacity:0.5;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35));
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+  .bill svg{ display:block; }
+
+  @keyframes swimA{
+    0%{   transform: translate(-12vw, 0)      rotate(-6deg); }
+    50%{  transform: translate(55vw, -6vh)    rotate(4deg); }
+    100%{ transform: translate(115vw, 2vh)    rotate(-6deg); }
+  }
+  @keyframes swimB{
+    0%{   transform: translate(115vw, 0)      rotate(8deg) scaleX(-1); }
+    50%{  transform: translate(45vw, 8vh)     rotate(-3deg) scaleX(-1); }
+    100%{ transform: translate(-15vw, -3vh)   rotate(8deg) scaleX(-1); }
+  }
+  @keyframes swimC{
+    0%{   transform: translate(-10vw, 0)      rotate(2deg); }
+    50%{  transform: translate(50vw, 10vh)    rotate(-8deg); }
+    100%{ transform: translate(110vw, -4vh)   rotate(2deg); }
+  }
+  @keyframes bob{
+    0%,100%{ margin-top:0; }
+    50%{ margin-top:14px; }
+  }
+
+  /* ---------- layout shell ---------- */
+  main{
+    position:relative; z-index:2;
+    max-width:760px; margin:0 auto;
+    padding: 72px 24px 64px;
+  }
+
+  .eyebrow{
+    display:flex; align-items:center; gap:10px;
+    justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--gold-dim);
+    margin-bottom:22px;
+  }
+  .eyebrow::before, .eyebrow::after{
+    content:''; height:1px; width:34px;
+    background:linear-gradient(90deg, transparent, var(--gold-dim));
+  }
+  .eyebrow::after{ background:linear-gradient(90deg, var(--gold-dim), transparent); }
+
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:650;
+    font-size:clamp(2.1rem, 7vw, 3.6rem);
+    line-height:1.06;
+    text-align:center;
+    letter-spacing:-0.01em;
+  }
+  h1 em{
+    font-style:italic; font-weight:850;
+    background:linear-gradient(100deg, var(--gold) 10%, #fff6da 40%, var(--gold) 70%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  .subhead{
+    text-align:center;
+    color:var(--cream-dim);
+    font-size:clamp(0.92rem, 2.4vw, 1.05rem);
+    max-width:460px;
+    margin: 18px auto 52px;
+    line-height:1.55;
+  }
+
+  /* ---------- the ledger ---------- */
+  .ledger{
+    background:var(--glass);
+    border:1px solid var(--glass-brd);
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    border-radius:22px;
+    padding: 8px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  .ledger-head{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 18px 14px;
+    border-bottom:1px dashed var(--glass-brd);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--cream-dim);
+  }
+  .ledger-head span:last-child{ color:var(--gold-dim); }
+
+  .reason{
+    display:flex; gap:16px; align-items:flex-start;
+    padding:18px;
+    border-bottom:1px solid rgba(244,239,225,0.07);
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .reason:last-child{ border-bottom:none; }
+  .reason:hover{
+    background:rgba(240,192,78,0.05);
+    transform:translateX(4px);
+  }
+
+  .rnum{
+    flex-shrink:0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    color:var(--deep);
+    background:linear-gradient(135deg, var(--gold) 0%, #d9a53a 100%);
+    width:34px; height:34px;
+    border-radius:9px;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:600;
+  }
+
+  .rtext{
+    font-size:0.98rem;
+    line-height:1.5;
+    color:var(--cream);
+    padding-top:4px;
+  }
+  .rtext b{ color:var(--gold); font-weight:600; }
+
+  /* ---------- footer verdict ---------- */
+  .verdict{
+    margin-top:44px;
+    text-align:center;
+  }
+  .verdict-line{
+    font-family:'Fraunces', serif;
+    font-weight:650;
+    font-size:clamp(1.2rem, 4vw, 1.6rem);
+    line-height:1.3;
+  }
+  .verdict-line em{
+    font-style:italic; font-weight:850;
+    color:var(--gold);
+  }
+  .stamp{
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top:20px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--gold-dim);
+    border:1px solid rgba(240,192,78,0.35);
+    padding:9px 16px;
+    border-radius:999px;
+    background:rgba(240,192,78,0.06);
+  }
+  .stamp::before{ content:'●'; color:#4ade80; font-size:0.6rem; }
+
+  /* ---------- account details ---------- */
+  .acct{
+    margin-top:36px;
+    text-align:center;
+  }
+  .acct-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--cream-dim);
+    margin-bottom:14px;
+  }
+  .acct-card{
+    max-width:340px;
+    margin:0 auto;
+    background:var(--glass);
+    border:1px solid rgba(240,192,78,0.28);
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    border-radius:16px;
+    padding:6px 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .acct-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 0;
+    border-bottom:1px dashed var(--glass-brd);
+  }
+  .acct-row:last-child{ border-bottom:none; }
+  .acct-key{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--cream-dim);
+  }
+  .acct-val{
+    font-family:'Fraunces', serif;
+    font-weight:650;
+    font-size:1.05rem;
+    color:var(--gold);
+  }
+  .acct-val.mono{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:500;
+    letter-spacing:0.03em;
+  }
+
+  @media (max-width:520px){
+    main{ padding:52px 16px 48px; }
+    .reason{ padding:15px; gap:12px; }
+    .rtext{ font-size:0.92rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .bill, .caustics{ animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="caustics"></div>
+
+<div class="money-pool" aria-hidden="true">
+  <!-- Naira bills -->
+  <div class="bill" style="top:8%;  width:92px;  animation: swimA 26s infinite; animation-delay:0s;">
+    <svg viewBox="0 0 100 46" width="92" height="42"><rect x="1" y="1" width="98" height="44" rx="5" fill="#1f6e46" stroke="#f0c04e" stroke-width="1.5"/><circle cx="50" cy="23" r="13" fill="none" stroke="#f0c04e" stroke-width="1.2"/><text x="50" y="28" font-family="IBM Plex Mono, monospace" font-size="13" fill="#f0c04e" text-anchor="middle">₦</text></svg>
+  </div>
+  <div class="bill" style="top:22%; width:70px;  animation: swimB 32s infinite; animation-delay:2s;">
+    <svg viewBox="0 0 100 46" width="70" height="32"><rect x="1" y="1" width="98" height="44" rx="5" fill="#194f34" stroke="#caa23f" stroke-width="1.5"/><circle cx="50" cy="23" r="13" fill="none" stroke="#caa23f" stroke-width="1.2"/><text x="50" y="28" font-family="IBM Plex Mono, monospace" font-size="13" fill="#caa23f" text-anchor="middle">₦</text></svg>
+  </div>
+  <div class="bill" style="top:64%; width:110px; animation: swimC 22s infinite; animation-delay:5s;">
+    <svg viewBox="0 0 100 46" width="110" height="50"><rect x="1" y="1" width="98" height="44" rx="5" fill="#1f6e46" stroke="#f0c04e" stroke-width="1.5"/><circle cx="50" cy="23" r="13" fill="none" stroke="#f0c04e" stroke-width="1.2"/><text x="50" y="28" font-family="IBM Plex Mono, monospace" font-size="13" fill="#f0c04e" text-anchor="middle">₦</text></svg>
+  </div>
+  <div class="bill" style="top:78%; width:80px;  animation: swimA 30s infinite; animation-delay:9s;">
+    <svg viewBox="0 0 100 46" width="80" height="36"><rect x="1" y="1" width="98" height="44" rx="5" fill="#194f34" stroke="#f0c04e" stroke-width="1.5"/><circle cx="50" cy="23" r="13" fill="none" stroke="#f0c04e" stroke-width="1.2"/><text x="50" y="28" font-family="IBM Plex Mono, monospace" font-size="13" fill="#f0c04e" text-anchor="middle">₦</text></svg>
+  </div>
+  <div class="bill" style="top:42%; width:64px;  animation: swimB 20s infinite; animation-delay:3s;">
+    <svg viewBox="0 0 100 46" width="64" height="30"><rect x="1" y="1" width="98" height="44" rx="5" fill="#1f6e46" stroke="#caa23f" stroke-width="1.5"/><circle cx="50" cy="23" r="13" fill="none" stroke="#caa23f" stroke-width="1.2"/><text x="50" y="28" font-family="IBM Plex Mono, monospace" font-size="13" fill="#caa23f" text-anchor="middle">₦</text></svg>
+  </div>
+
+  <!-- coins -->
+  <div class="bill" style="top:12%; width:26px; animation: swimC 18s infinite; animation-delay:1s;">
+    <svg viewBox="0 0 40 40" width="26" height="26"><circle cx="20" cy="20" r="18" fill="#f0c04e" stroke="#caa23f" stroke-width="2"/><text x="20" y="26" font-family="IBM Plex Mono, monospace" font-size="16" fill="#1f6e46" text-anchor="middle">₦</text></svg>
+  </div>
+  <div class="bill" style="top:56%; width:22px; animation: swimA 24s infinite; animation-delay:7s;">
+    <svg viewBox="0 0 40 40" width="22" height="22"><circle cx="20" cy="20" r="18" fill="#f0c04e" stroke="#caa23f" stroke-width="2"/><text x="20" y="26" font-family="IBM Plex Mono, monospace" font-size="16" fill="#1f6e46" text-anchor="middle">₦</text></svg>
+  </div>
+  <div class="bill" style="top:88%; width:30px; animation: swimB 27s infinite; animation-delay:4s;">
+    <svg viewBox="0 0 40 40" width="30" height="30"><circle cx="20" cy="20" r="18" fill="#f0c04e" stroke="#caa23f" stroke-width="2"/><text x="20" y="26" font-family="IBM Plex Mono, monospace" font-size="16" fill="#1f6e46" text-anchor="middle">₦</text></svg>
+  </div>
+  <div class="bill" style="top:32%; width:24px; animation: swimC 21s infinite; animation-delay:11s;">
+    <svg viewBox="0 0 40 40" width="24" height="24"><circle cx="20" cy="20" r="18" fill="#f0c04e" stroke="#caa23f" stroke-width="2"/><text x="20" y="26" font-family="IBM Plex Mono, monospace" font-size="16" fill="#1f6e46" text-anchor="middle">₦</text></svg>
+  </div>
+</div>
+
+<main>
+  <p class="eyebrow">Formal petition · Exhibit A</p>
+  <h1>Habibi, <em>bless</em> Libra.</h1>
+  <p class="subhead">
+    The evidence has been reviewed, notarized, and set to swim gently in the background for dramatic effect. Ten reasons follow.
+  </p>
+
+  <div class="ledger">
+    <div class="ledger-head">
+      <span>The Ledger of Libra</span>
+      <span>10 entries</span>
+    </div>
+
+    <div class="reason"><div class="rnum">01</div><div class="rtext">Libra has been <b>manifesting this exact moment</b> since roughly 6:47 this morning.</div></div>
+    <div class="reason"><div class="rnum">02</div><div class="rtext">Habibi's generosity is <b>legendary in scripture and group chats alike</b>. This is just the next chapter.</div></div>
+    <div class="reason"><div class="rnum">03</div><div class="rtext">Libra has never asked Habibi for anything before. <b>First-time customer energy.</b></div></div>
+    <div class="reason"><div class="rnum">04</div><div class="rtext">Blessing Libra is a <b>proven, science-backed source of good luck</b> for the blesser. Ask anyone. Don't ask anyone.</div></div>
+    <div class="reason"><div class="rnum">05</div><div class="rtext">There is currently animated cash swimming across this screen. <b>That's effort, Habibi.</b></div></div>
+    <div class="reason"><div class="rnum">06</div><div class="rtext">Libra will tell the story of "the day Habibi came through" <b>for years to come</b>, favorably.</div></div>
+    <div class="reason"><div class="rnum">07</div><div class="rtext">It costs Habibi nothing to read this. It could cost him <b>even less to act on it</b>.</div></div>
+    <div class="reason"><div class="rnum">08</div><div class="rtext">Somewhere, an elder is nodding slowly, <b>fully in support of this cause</b>.</div></div>
+    <div class="reason"><div class="rnum">09</div><div class="rtext">The name "Libra" literally means <b>the scales</b>. Right now, they are tipped hopefully in one direction.</div></div>
+    <div class="reason"><div class="rnum">10</div><div class="rtext">Because Habibi has read this far, and <b>a good ending is a generous one</b>.</div></div>
+  </div>
+
+  <div class="verdict">
+    <p class="verdict-line">The case is closed. <em>Bless Libra.</em></p>
+    <div class="stamp">Verified &amp; awaiting Habibi</div>
+  </div>
+
+  <div class="acct">
+    <p class="acct-label">Remit blessings to</p>
+    <div class="acct-card">
+      <div class="acct-row">
+        <span class="acct-key">Bank</span>
+        <span class="acct-val">Opay</span>
+      </div>
+      <div class="acct-row">
+        <span class="acct-key">Account No.</span>
+        <span class="acct-val mono">7048280036</span>
+      </div>
+      <div class="acct-row">
+        <span class="acct-key">Name</span>
+        <span class="acct-val">Libra</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
