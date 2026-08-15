@@ -158,6 +158,19 @@
     transform:translateX(4px);
   }
 
+  .reason.bonus{
+    background:rgba(240,192,78,0.07);
+    border-top:1px dashed rgba(240,192,78,0.3);
+  }
+  .reason.bonus:hover{
+    background:rgba(240,192,78,0.11);
+  }
+  .reason.bonus .rnum{
+    background:transparent;
+    border:1.5px solid var(--gold);
+    color:var(--gold);
+  }
+
   .rnum{
     flex-shrink:0;
     font-family:'IBM Plex Mono', monospace;
@@ -309,7 +322,7 @@
   <div class="ledger">
     <div class="ledger-head">
       <span>The Ledger of Libra</span>
-      <span>10 entries</span>
+      <span>10 entries + receipts</span>
     </div>
 
     <div class="reason"><div class="rnum">01</div><div class="rtext">Libra has been <b>manifesting this exact moment</b> since roughly 6:47 this morning.</div></div>
@@ -322,6 +335,13 @@
     <div class="reason"><div class="rnum">08</div><div class="rtext">Somewhere, an elder is nodding slowly, <b>fully in support of this cause</b>.</div></div>
     <div class="reason"><div class="rnum">09</div><div class="rtext">The name "Libra" literally means <b>the scales</b>. Right now, they are tipped hopefully in one direction.</div></div>
     <div class="reason"><div class="rnum">10</div><div class="rtext">Because Habibi has read this far, and <b>a good ending is a generous one</b>.</div></div>
+
+    <div class="reason bonus">
+      <div class="rnum">+1</div>
+      <div class="rtext">
+        <b>Receipts, on record:</b> back on Monopoly GO, Libra gave Habibi <b>free stickers</b>, went out and <b>sourced stickers</b> for him, and quietly <b>managed his whole account</b> like a personal broker. No invoice was ever sent.
+      </div>
+    </div>
   </div>
 
   <div class="verdict">
